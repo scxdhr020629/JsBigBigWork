@@ -12,6 +12,7 @@ const AlipayFormData = require("alipay-sdk/lib/form").default;
 //引入axiso
 const axios = require("axios");
 const { json } = require("express");
+const { log } = require("console");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -37,6 +38,7 @@ router.post(
     let files = req.files;
     let file = files[0];
     let fileInfo = {};
+    console.log("找到api了");
     let path =
       "../public/IMGURL/" + Date.now().toString() + "_" + file.originalname;
     fs.renameSync("../public/IMGURL/" + file.filename, path);
@@ -56,7 +58,7 @@ router.post(
 
 function uploimg(path, unsrinfo, fileInfo) {
   let pathd = path.slice(9);
-
+  console.log("是否进入 uploimg");
   let id = JSON.parse(JSON.stringify(unsrinfo)).id;
   connection.query(
     `select * from  userimg where userid=${id}`,
