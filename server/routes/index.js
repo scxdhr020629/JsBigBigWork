@@ -141,6 +141,8 @@ router.post("/api/PJgoods", function (req, res, next) {
   );
 });
 
+// 这一段代码需要更改
+
 //通过商品id查询商品评价
 router.post("/api/byidorderPj", function (req, res, next) {
   const id = req.body.goodsId;
@@ -156,6 +158,9 @@ router.post("/api/byidorderPj", function (req, res, next) {
     }
   );
 });
+
+
+// 这一段代码也需要更改
 
 //通过商品名称查询物品id
 router.post("/api/selectshapinid", function (req, res, next) {
@@ -191,6 +196,9 @@ router.post("/api/quedingrOrder", function (req, res, next) {
     }
   );
 });
+
+// 这个也需要更改
+
 
 //查询订单
 router.post("/api/selectuserOrder", function (req, res, next) {
@@ -535,6 +543,8 @@ router.post("/api/submitOrder", function (req, res, next) {
   );
 });
 
+// 这个也需要更改
+
 //查询订单
 router.post("/api/selectOrder", function (req, res, next) {
   //接收前端给后端的订单号
@@ -635,6 +645,9 @@ router.post("/api/addOrder", function (req, res, next) {
     }
   );
 });
+
+
+// 这个是否要改成delete 的 emmm 我本人不太想改
 
 //删除收货地址
 router.post("/api/deleteAddress", function (req, res, next) {
@@ -780,7 +793,7 @@ router.post("/api/updateAddress", function (req, res, next) {
     }
   );
 });
-
+// 这个也需要更改
 //查询收货地址
 router.post("/api/selectAddress", function (req, res, next) {
   let token = req.headers.token;
@@ -919,6 +932,8 @@ router.post("/api/updateNum", function (req, res, next) {
   );
 });
 
+
+// 我不想用delete 啊   改！
 //删除购物车数据
 router.post("/api/deleteCart", function (req, res) {
   let arrId = req.body.arrId;
@@ -940,6 +955,7 @@ router.post("/api/deleteCart", function (req, res) {
   });
 });
 
+// 改改改 你懂的
 //查询购物车数据
 router.post("/api/selectCart", function (req, res, next) {
   //token
@@ -1069,6 +1085,8 @@ router.post("/api/recovery", function (req, res, next) {
   });
 });
 
+
+// 改 
 //查询用户是否存在
 router.post("/api/selectUser", function (req, res, next) {
   let params = {
