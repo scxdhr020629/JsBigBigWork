@@ -795,6 +795,8 @@ router.post("/api/updateAddress", function (req, res, next) {
 });
 // 这个也需要更改
 //查询收货地址
+// 要在get里面传入token？？？？为啥要传
+// √×
 router.post("/api/selectAddress", function (req, res, next) {
   let token = req.headers.token;
   let tokenObj = jwt.decode(token);
@@ -1060,6 +1062,7 @@ router.post("/api/addCart", function (req, res, next) {
 });
 
 //修改密码
+//就很正常的修改的逻辑
 router.post("/api/recovery", function (req, res, next) {
   let params = {
     userTel: req.body.phone,
@@ -1088,6 +1091,7 @@ router.post("/api/recovery", function (req, res, next) {
 
 // 改 
 //查询用户是否存在
+//这种隐私的电话数据也别放到get里吧
 router.post("/api/selectUser", function (req, res, next) {
   let params = {
     userTel: req.body.phone,
@@ -1114,6 +1118,8 @@ router.post("/api/selectUser", function (req, res, next) {
 });
 
 //注册
+// 如果已经在数据库里了 就 直接跳转就好了
+// 这里没有设置什么报错信息
 router.post("/api/register", function (req, res, next) {
   let params = {
     userTel: req.body.phone,
@@ -1187,6 +1193,7 @@ router.post("/api/addUser", function (req, res, next) {
 }),
   //发送短信验证码
   //点击获取验证码就发送 在网络部分
+  //其实就是随机生成一个随机数
   router.post("/api/code", function (req, res, next) {
     let tel = req.body.phone;
     // 短信应用SDK AppID
@@ -1230,6 +1237,8 @@ router.post("/api/addUser", function (req, res, next) {
     ); // 签名参数不能为空串
   }),
   //登录
+  // 这里的逻辑其实就是一个一个判断
+  // 但是要注意的是 有一个 token的使用
   router.post("/api/login", function (req, res, next) {
     //后端要接收前端传递过来的值
     let params = {
@@ -1597,6 +1606,11 @@ router.get("/api/goods/ArrshopList", function (req, res, next) {
     });
   });
 });
+
+// 就直接在这里模拟数据了
+// 所以不要点击那个第三页的数据 因为没有做
+// 它会卡死在那里
+
 
 //首页铁观音的数据
 router.get("/api/index_list/2/data/1", function (req, res, next) {
