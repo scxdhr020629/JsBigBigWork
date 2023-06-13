@@ -1166,6 +1166,7 @@ router.post("/api/addUser", function (req, res, next) {
   });
 }),
   //发送短信验证码
+  //点击获取验证码就发送 在网络部分
   router.post("/api/code", function (req, res, next) {
     let tel = req.body.phone;
     // 短信应用SDK AppID

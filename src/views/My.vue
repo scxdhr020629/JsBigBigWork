@@ -49,8 +49,9 @@
       <!-- <van-uploader>
 				<van-button icon="plus" type="primary">上传文件</van-button>
       </van-uploader>-->
+       <!-- 这里面要更改 3000 试试,原先是 8082 -->
       <el-upload
-        action="http://localhost:8082/api/hold/imgload"
+        action="http://localhost:3000/api/hold/imgload"
         :on-remove="handleRemove"
         :before-remove="beforeRemove"
         multiple
