@@ -1421,27 +1421,27 @@ router.get("/api/goods/list", function (req, res, next) {
               //三级
               {
                 id: 0,
-                name: "龙井",
+                name: "大红袍",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 1,
-                name: "碧螺春",
+                name: "铁罗汉",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 3,
-                name: "雀舌",
+                name: "白鸡冠",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 4,
-                name: "安吉白茶",
+                name: "水金龟",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 5,
-                name: "六安瓜片",
+                name: "武夷水仙",
                 imgUrl: "./images/list1.jpeg",
               },
             ],
@@ -1461,27 +1461,27 @@ router.get("/api/goods/list", function (req, res, next) {
               //三级
               {
                 id: 0,
-                name: "龙井",
+                name: "正山小种",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 1,
-                name: "碧螺春",
+                name: "祁门红茶",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 3,
-                name: "雀舌",
+                name: "大吉岭红茶",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 4,
-                name: "安吉白茶",
+                name: "阿萨姆红茶",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 5,
-                name: "六安瓜片",
+                name: "红碎茶",
                 imgUrl: "./images/list1.jpeg",
               },
             ],
@@ -1501,17 +1501,17 @@ router.get("/api/goods/list", function (req, res, next) {
               //三级
               {
                 id: 0,
-                name: "龙井",
+                name: "福鼎大白茶",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 1,
-                name: "碧螺春",
+                name: "福安大白茶",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 3,
-                name: "雀舌",
+                name: "白毫银针",
                 imgUrl: "./images/list1.jpeg",
               },
               {
@@ -1521,7 +1521,7 @@ router.get("/api/goods/list", function (req, res, next) {
               },
               {
                 id: 5,
-                name: "六安瓜片",
+                name: "贡眉",
                 imgUrl: "./images/list1.jpeg",
               },
             ],
@@ -1541,27 +1541,27 @@ router.get("/api/goods/list", function (req, res, next) {
               //三级
               {
                 id: 0,
-                name: "龙井",
+                name: "大益普洱茶",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 1,
-                name: "碧螺春",
+                name: "八角亭普洱茶",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 3,
-                name: "雀舌",
+                name: "中茶普洱茶",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 4,
-                name: "安吉白茶",
+                name: "下关沱茶",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 5,
-                name: "六安瓜片",
+                name: "福村梅记",
                 imgUrl: "./images/list1.jpeg",
               },
             ],
