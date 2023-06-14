@@ -158,7 +158,6 @@ router.post("/api/byidorderPj", function (req, res, next) {
   );
 });
 
-
 // 这一段代码也需要更改
 
 //通过商品名称查询物品id
@@ -197,7 +196,6 @@ router.post("/api/quedingrOrder", function (req, res, next) {
 });
 
 // 这个也需要更改
-
 
 //查询订单
 router.post("/api/selectuserOrder", function (req, res, next) {
@@ -645,7 +643,6 @@ router.post("/api/addOrder", function (req, res, next) {
   );
 });
 
-
 // 这个是否要改成delete 的 emmm 我本人不太想改
 
 //删除收货地址
@@ -937,20 +934,41 @@ router.post("/api/updateNum", function (req, res, next) {
   );
 });
 
-
 // 我不想用delete 啊   改！
 //删除购物车数据
-router.post("/api/deleteCart", function (req, res) {
-  let arrId = req.body.arrId;
+// 删除购物车数据
+// 删除购物车数据
+// router.delete("/api/deleteCart", function (req, res) {
+//   let arrId = req.body.arrId;
+//   console.log(arrId);
+//   for (let i = 0; i < arrId.length; i++) {
+//     connection.query(
+//       `delete from goods_cart where id = ${arrId[i]}`,
+//       function (error, results) {
+//         console.log(results);
+//       }
+//     );
+//   }
+//   res.send({
+//     data: {
+//       code: 200,
+//       success: true,
+//       data: "删除成功",
+//     },
+//   });
+// });
+
+router.delete("/api/deleteCart/:id", function (req, res) {
+  let arrId = req.params.id.split(","); // 这里把id参数转换成数组
   console.log(arrId);
-  for (let i = 0; i < arrId.length; i++) {
-    connection.query(
-      `delete from goods_cart where id = ${arrId[i]}`,
-      function (error, results) {
-        console.log(results);
-      }
-    );
-  }
+  // 使用参数化查询和一条SQL语句来删除多个id的数据
+  connection.query(
+    `delete from goods_cart where id in (?)`,
+    [arrId],
+    function (error, results) {
+      console.log(results);
+    }
+  );
   res.send({
     data: {
       code: 200,
@@ -959,6 +977,11 @@ router.post("/api/deleteCart", function (req, res) {
     },
   });
 });
+
+
+
+
+
 
 // 改改改 你懂的
 //查询购物车数据
@@ -1091,8 +1114,7 @@ router.post("/api/recovery", function (req, res, next) {
   });
 });
 
-
-// 改 
+// 改
 //查询用户是否存在
 //这种隐私的电话数据也别放到get里吧
 router.post("/api/selectUser", function (req, res, next) {
@@ -1615,7 +1637,6 @@ router.get("/api/goods/ArrshopList", function (req, res, next) {
 // 就直接在这里模拟数据了
 // 所以不要点击那个第三页的数据 因为没有做
 // 它会卡死在那里
-
 
 //首页铁观音的数据
 router.get("/api/index_list/2/data/1", function (req, res, next) {
