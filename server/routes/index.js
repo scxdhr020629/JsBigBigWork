@@ -848,6 +848,10 @@ router.post("/api/addAddress", function (req, res, next) {
       let uId = results[0].id;
 
       //增加一条收货地址
+      //这坨代码写的很冗杂，1的那个判断
+      //首先我们要判断我们添加的这个地址，是否是默认地址，如果不是默认地址我们自己添加就好
+      //如果是默认地址的话
+      //那要先查一下之前有没有默认地址，没有的话我们就直接添加，有的话，那要先把之前的所有默认地址更改为普通地址，然后添加
       if (isDefault != 1) {
         connection.query(
           `insert into address (uId,name,tel,province,city,county,addressDetail,isDefault,areaCode) values (${uId},"${name}","${tel}","${province}","${city}","${county}","${addressDetail}","${isDefault}","${areaCode}")`,
@@ -1156,6 +1160,8 @@ router.post("/api/register", function (req, res, next) {
 });
 
 //增加一个用户
+//这个也在验证短信code里要用
+//直接把验证逻辑放到那个
 router.post("/api/addUser", function (req, res, next) {
   let params = {
     userTel: req.body.phone,
