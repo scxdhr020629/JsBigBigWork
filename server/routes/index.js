@@ -646,10 +646,29 @@ router.post("/api/addOrder", function (req, res, next) {
 // 这个是否要改成delete 的 emmm 我本人不太想改
 
 //删除收货地址
-router.post("/api/deleteAddress", function (req, res, next) {
-  let id = req.body.id;
+// router.post("/api/deleteAddress", function (req, res, next) {
+//   let id = req.body.id;
+//   connection.query(
+//     `delete from address where id = ${id}`,
+//     function (error, results) {
+//       res.send({
+//         data: {
+//           code: 200,
+//           success: true,
+//           msg: "删除成功",
+//         },
+//       });
+//     }
+//   );
+// });
+
+
+router.delete("/api/deleteAddress/:id", function (req, res, next) {
+  let id = req.params.id; // 这里使用req.body来接收请求体
+  // 使用参数化查询来防止SQL注入
   connection.query(
-    `delete from address where id = ${id}`,
+    `delete from address where id = ?`,
+    [id],
     function (error, results) {
       res.send({
         data: {
@@ -661,6 +680,8 @@ router.post("/api/deleteAddress", function (req, res, next) {
     }
   );
 });
+
+
 
 //修改收货地址
 router.post("/api/updateAddress", function (req, res, next) {
@@ -958,7 +979,7 @@ router.post("/api/updateNum", function (req, res, next) {
 //   });
 // });
 
-router.delete("/api/deleteCart/:id", function (req, res) {
+router.post("/api/deleteCart/:id", function (req, res) {
   let arrId = req.params.id.split(","); // 这里把id参数转换成数组
   console.log(arrId);
   // 使用参数化查询和一条SQL语句来删除多个id的数据

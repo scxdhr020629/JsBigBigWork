@@ -98,23 +98,6 @@ export default {
         });
     },
     //删除
-    // onDelete(content) {
-    //   console.log("调用了，可能是没找到");
-    //   http
-    //     .$axios({
-    //       url: "/api/deleteCart/" + content.id,
-    //       // 指定请求方法为delete
-    //       method: "delete",
-    //       headers: {
-    //         token: true,
-    //       },
-    //     })
-    //     .then((res) => {
-    //       if (!res.success) return;
-    //       Toast(res.msg);
-    //       this.$router.push("/path");
-    //     });
-    // },
     onDelete(content) {
       http
         .$axios({
