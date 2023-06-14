@@ -49,7 +49,6 @@
       <!-- <van-uploader>
 				<van-button icon="plus" type="primary">上传文件</van-button>
       </van-uploader>-->
-       <!-- action="http://localhost:3000/api/hold/imgload" -->
       <el-upload
         action="/api/hold/imgload"
         :on-remove="handleRemove"

@@ -119,29 +119,19 @@ export default {
                     commit('unCheckAll');
                 }
 
-                // http.$axios({
-                //     url: '/api/deleteCart',
-                //     method: 'delete',
-
-                //     data: {
-                //         arrId: arrCart
-                //     }
-                // }).then(res => {
-
-                //     if (res.success) {
-                //         Toast(res.msg)
-                //     }
-                // })
                 http.$axios({
-                    url: '/api/deleteCart/' + arrCart.join(","), // 这里把arrCart数组转换成字符串，并且作为id参数传递
-                    method: 'delete',
+                    url: '/api/deleteCart',
+                    method: 'post',
+
+                    data: {
+                        arrId: arrCart
+                    }
                 }).then(res => {
 
                     if (res.success) {
                         Toast(res.msg)
                     }
                 })
-
             })
         }
     },

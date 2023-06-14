@@ -12,7 +12,6 @@ const AlipayFormData = require("alipay-sdk/lib/form").default;
 //引入axiso
 const axios = require("axios");
 const { json } = require("express");
-const { log } = require("console");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -28,7 +27,8 @@ router.get("/", function (req, res, next) {
 // }
 
 //图片上传
-router.post("/api/hold/imgload",
+router.post(
+  "/api/hold/imgload",
   multer({
     //设置文件存储路径
     dest: "../public/IMGURL",
@@ -37,7 +37,6 @@ router.post("/api/hold/imgload",
     let files = req.files;
     let file = files[0];
     let fileInfo = {};
-    console.log("找到api了");
     let path =
       "../public/IMGURL/" + Date.now().toString() + "_" + file.originalname;
     fs.renameSync("../public/IMGURL/" + file.filename, path);
@@ -57,7 +56,7 @@ router.post("/api/hold/imgload",
 
 function uploimg(path, unsrinfo, fileInfo) {
   let pathd = path.slice(9);
-  console.log("是否进入 uploimg");
+
   let id = JSON.parse(JSON.stringify(unsrinfo)).id;
   connection.query(
     `select * from  userimg where userid=${id}`,
@@ -140,8 +139,6 @@ router.post("/api/PJgoods", function (req, res, next) {
   );
 });
 
-// 这一段代码需要更改
-
 //通过商品id查询商品评价
 router.post("/api/byidorderPj", function (req, res, next) {
   const id = req.body.goodsId;
@@ -157,8 +154,6 @@ router.post("/api/byidorderPj", function (req, res, next) {
     }
   );
 });
-
-// 这一段代码也需要更改
 
 //通过商品名称查询物品id
 router.post("/api/selectshapinid", function (req, res, next) {
@@ -195,7 +190,6 @@ router.post("/api/quedingrOrder", function (req, res, next) {
   );
 });
 
-// 这个也需要更改
 //查询订单
 router.post("/api/selectuserOrder", function (req, res, next) {
   //token
@@ -539,8 +533,6 @@ router.post("/api/submitOrder", function (req, res, next) {
   );
 });
 
-// 这个也需要更改
-
 //查询订单
 router.post("/api/selectOrder", function (req, res, next) {
   //接收前端给后端的订单号
@@ -642,32 +634,11 @@ router.post("/api/addOrder", function (req, res, next) {
   );
 });
 
-// 这个是否要改成delete 的 emmm 我本人不太想改
-
 //删除收货地址
-// router.post("/api/deleteAddress", function (req, res, next) {
-//   let id = req.body.id;
-//   connection.query(
-//     `delete from address where id = ${id}`,
-//     function (error, results) {
-//       res.send({
-//         data: {
-//           code: 200,
-//           success: true,
-//           msg: "删除成功",
-//         },
-//       });
-//     }
-//   );
-// });
-
-
-router.delete("/api/deleteAddress/:id", function (req, res, next) {
-  let id = req.params.id; // 这里使用req.body来接收请求体
-  // 使用参数化查询来防止SQL注入
+router.post("/api/deleteAddress", function (req, res, next) {
+  let id = req.body.id;
   connection.query(
-    `delete from address where id = ?`,
-    [id],
+    `delete from address where id = ${id}`,
     function (error, results) {
       res.send({
         data: {
@@ -679,8 +650,6 @@ router.delete("/api/deleteAddress/:id", function (req, res, next) {
     }
   );
 });
-
-
 
 //修改收货地址
 router.post("/api/updateAddress", function (req, res, next) {
@@ -809,10 +778,8 @@ router.post("/api/updateAddress", function (req, res, next) {
     }
   );
 });
-// 这个也需要更改
+
 //查询收货地址
-// 要在get里面传入token？？？？为啥要传
-// √×
 router.post("/api/selectAddress", function (req, res, next) {
   let token = req.headers.token;
   let tokenObj = jwt.decode(token);
@@ -864,10 +831,6 @@ router.post("/api/addAddress", function (req, res, next) {
       let uId = results[0].id;
 
       //增加一条收货地址
-      //这坨代码写的很冗杂，1的那个判断
-      //首先我们要判断我们添加的这个地址，是否是默认地址，如果不是默认地址我们自己添加就好
-      //如果是默认地址的话
-      //那要先查一下之前有没有默认地址，没有的话我们就直接添加，有的话，那要先把之前的所有默认地址更改为普通地址，然后添加
       if (isDefault != 1) {
         connection.query(
           `insert into address (uId,name,tel,province,city,county,addressDetail,isDefault,areaCode) values (${uId},"${name}","${tel}","${province}","${city}","${county}","${addressDetail}","${isDefault}","${areaCode}")`,
@@ -954,41 +917,18 @@ router.post("/api/updateNum", function (req, res, next) {
   );
 });
 
-// 我不想用delete 啊   改！
 //删除购物车数据
-// 删除购物车数据
-// 删除购物车数据
-// router.delete("/api/deleteCart", function (req, res) {
-//   let arrId = req.body.arrId;
-//   console.log(arrId);
-//   for (let i = 0; i < arrId.length; i++) {
-//     connection.query(
-//       `delete from goods_cart where id = ${arrId[i]}`,
-//       function (error, results) {
-//         console.log(results);
-//       }
-//     );
-//   }
-//   res.send({
-//     data: {
-//       code: 200,
-//       success: true,
-//       data: "删除成功",
-//     },
-//   });
-// });
-
-router.post("/api/deleteCart/:id", function (req, res) {
-  let arrId = req.params.id.split(","); // 这里把id参数转换成数组
+router.post("/api/deleteCart", function (req, res) {
+  let arrId = req.body.arrId;
   console.log(arrId);
-  // 使用参数化查询和一条SQL语句来删除多个id的数据
-  connection.query(
-    `delete from goods_cart where id in (?)`,
-    [arrId],
-    function (error, results) {
-      console.log(results);
-    }
-  );
+  for (let i = 0; i < arrId.length; i++) {
+    connection.query(
+      `delete from goods_cart where id = ${arrId[i]}`,
+      function (error, results) {
+        console.log(results);
+      }
+    );
+  }
   res.send({
     data: {
       code: 200,
@@ -998,12 +938,6 @@ router.post("/api/deleteCart/:id", function (req, res) {
   });
 });
 
-
-
-
-
-
-// 改改改 你懂的
 //查询购物车数据
 router.post("/api/selectCart", function (req, res, next) {
   //token
@@ -1108,7 +1042,6 @@ router.post("/api/addCart", function (req, res, next) {
 });
 
 //修改密码
-//就很正常的修改的逻辑
 router.post("/api/recovery", function (req, res, next) {
   let params = {
     userTel: req.body.phone,
@@ -1134,9 +1067,7 @@ router.post("/api/recovery", function (req, res, next) {
   });
 });
 
-// 改
 //查询用户是否存在
-//这种隐私的电话数据也别放到get里吧
 router.post("/api/selectUser", function (req, res, next) {
   let params = {
     userTel: req.body.phone,
@@ -1163,8 +1094,6 @@ router.post("/api/selectUser", function (req, res, next) {
 });
 
 //注册
-// 如果已经在数据库里了 就 直接跳转就好了
-// 这里没有设置什么报错信息
 router.post("/api/register", function (req, res, next) {
   let params = {
     userTel: req.body.phone,
@@ -1201,8 +1130,6 @@ router.post("/api/register", function (req, res, next) {
 });
 
 //增加一个用户
-//这个也在验证短信code里要用
-//直接把验证逻辑放到那个
 router.post("/api/addUser", function (req, res, next) {
   let params = {
     userTel: req.body.phone,
@@ -1239,8 +1166,6 @@ router.post("/api/addUser", function (req, res, next) {
   });
 }),
   //发送短信验证码
-  //点击获取验证码就发送 在网络部分
-  //其实就是随机生成一个随机数
   router.post("/api/code", function (req, res, next) {
     let tel = req.body.phone;
     // 短信应用SDK AppID
@@ -1284,8 +1209,6 @@ router.post("/api/addUser", function (req, res, next) {
     ); // 签名参数不能为空串
   }),
   //登录
-  // 这里的逻辑其实就是一个一个判断
-  // 但是要注意的是 有一个 token的使用
   router.post("/api/login", function (req, res, next) {
     //后端要接收前端传递过来的值
     let params = {
@@ -1468,27 +1391,27 @@ router.get("/api/goods/list", function (req, res, next) {
               //三级
               {
                 id: 0,
-                name: "大红袍",
+                name: "龙井",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 1,
-                name: "铁罗汉",
+                name: "碧螺春",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 3,
-                name: "白鸡冠",
+                name: "雀舌",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 4,
-                name: "水金龟",
+                name: "安吉白茶",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 5,
-                name: "武夷水仙",
+                name: "六安瓜片",
                 imgUrl: "./images/list1.jpeg",
               },
             ],
@@ -1508,27 +1431,27 @@ router.get("/api/goods/list", function (req, res, next) {
               //三级
               {
                 id: 0,
-                name: "正山小种",
+                name: "龙井",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 1,
-                name: "祁门红茶",
+                name: "碧螺春",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 3,
-                name: "大吉岭红茶",
+                name: "雀舌",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 4,
-                name: "阿萨姆红茶",
+                name: "安吉白茶",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 5,
-                name: "红碎茶",
+                name: "六安瓜片",
                 imgUrl: "./images/list1.jpeg",
               },
             ],
@@ -1548,17 +1471,17 @@ router.get("/api/goods/list", function (req, res, next) {
               //三级
               {
                 id: 0,
-                name: "福鼎大白茶",
+                name: "龙井",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 1,
-                name: "福安大白茶",
+                name: "碧螺春",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 3,
-                name: "白毫银针",
+                name: "雀舌",
                 imgUrl: "./images/list1.jpeg",
               },
               {
@@ -1568,7 +1491,7 @@ router.get("/api/goods/list", function (req, res, next) {
               },
               {
                 id: 5,
-                name: "贡眉",
+                name: "六安瓜片",
                 imgUrl: "./images/list1.jpeg",
               },
             ],
@@ -1588,27 +1511,27 @@ router.get("/api/goods/list", function (req, res, next) {
               //三级
               {
                 id: 0,
-                name: "大益普洱茶",
+                name: "龙井",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 1,
-                name: "八角亭普洱茶",
+                name: "碧螺春",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 3,
-                name: "中茶普洱茶",
+                name: "雀舌",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 4,
-                name: "下关沱茶",
+                name: "安吉白茶",
                 imgUrl: "./images/list1.jpeg",
               },
               {
                 id: 5,
-                name: "福村梅记",
+                name: "六安瓜片",
                 imgUrl: "./images/list1.jpeg",
               },
             ],
@@ -1653,10 +1576,6 @@ router.get("/api/goods/ArrshopList", function (req, res, next) {
     });
   });
 });
-
-// 就直接在这里模拟数据了
-// 所以不要点击那个第三页的数据 因为没有做
-// 它会卡死在那里
 
 //首页铁观音的数据
 router.get("/api/index_list/2/data/1", function (req, res, next) {

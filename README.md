@@ -1,4 +1,4 @@
-# vue-tea
+# 卖茶商城
 
 ## Project setup
 ```
@@ -20,5 +20,19 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+## server
+
+本次js作业的代码，直接进入目录下
+
+```
+npm install
+```
+
+运行的时候
+
+```
+npm run start
+```
+
