@@ -36,3 +36,12 @@ npm install
 npm run start
 ```
 
+
+
+## final_work_lab
+
+这个文件下放的是我们两个的实验报告
+
+## 卖茶商城接口.postman_collection.json
+
+这个文件放的是postman接口
