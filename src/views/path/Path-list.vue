@@ -34,6 +34,7 @@ import { areaList } from "@vant/area-data";
 import Header from "@/components/path/Header.vue";
 import Tabbar from "@/components/common/Tabbar.vue";
 import http from "@/common/api/request.js";
+
 export default {
   data() {
     return {
@@ -43,17 +44,13 @@ export default {
       AddressInfo: {},
     };
   },
-  created(){
-    
-  },
-  computed:{
-
-  },
+  created() {},
+  computed: {},
   mounted() {
     let key = JSON.parse(this.$route.query.key);
     console.log(key);
     if (key == "add") {
-      this.pathStatus = true;   
+      this.pathStatus = true;
     } else {
       this.AddressInfo = key;
       this.AddressInfo.isDefault =
@@ -100,24 +97,42 @@ export default {
           this.$router.push("/path");
         });
     },
-        //删除
-        onDelete(content) {
-            
-            http.$axios({
-            	url:'/api/deleteAddress',
-                method:"post",
-                headers:{
-                    token:true
-                },
-                data:{
-                    id:content.id
-                }
-            }).then(res=>{
-                if( !res.success ) return;
-                Toast(res.msg);
-                this.$router.push('/path');
-            })
-        },
+    //删除
+    // onDelete(content) {
+    //   console.log("调用了，可能是没找到");
+    //   http
+    //     .$axios({
+    //       url: "/api/deleteCart/" + content.id,
+    //       // 指定请求方法为delete
+    //       method: "delete",
+    //       headers: {
+    //         token: true,
+    //       },
+    //     })
+    //     .then((res) => {
+    //       if (!res.success) return;
+    //       Toast(res.msg);
+    //       this.$router.push("/path");
+    //     });
+    // },
+    onDelete(content) {
+      http
+        .$axios({
+          url: "/api/deleteAddress",
+          method: "post",
+          headers: {
+            token: true,
+          },
+          data: {
+            id: content.id,
+          },
+        })
+        .then((res) => {
+          if (!res.success) return;
+          Toast(res.msg);
+          this.$router.push("/path");
+        });
+    },
   },
   components: {
     Tabbar,
@@ -129,7 +144,7 @@ export default {
 <style lang="less" scoped>
 section {
   background-color: #f7f7f7;
-    margin-top: 50px;
+  margin-top: 50px;
   .van-address-edit {
     padding: 0;
   }
