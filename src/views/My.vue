@@ -49,7 +49,6 @@
       <!-- <van-uploader>
 				<van-button icon="plus" type="primary">上传文件</van-button>
       </van-uploader>-->
-       <!-- 这里面要更改 3000 试试,原先是 8082 -->
        <!-- action="http://localhost:3000/api/hold/imgload" -->
       <el-upload
         action="/api/hold/imgload"
