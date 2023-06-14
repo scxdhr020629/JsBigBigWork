@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "d143ec37-2ca4-4d8a-9a4a-9a201f16ae6f",
+		"name": "卖茶商城接口",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23924749"
+	},
+	"item": [
+		{
+			"name": "获取商城数据",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "搜索商品",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "密码登录接口",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://10.67.205.231:8080/api/login",
+					"protocol": "http",
+					"host": [
+						"10",
+						"67",
+						"205",
+						"231"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "验证码登录接口",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://10.67.205.231:8080/api/code",
+					"protocol": "http",
+					"host": [
+						"10",
+						"67",
+						"205",
+						"231"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"code"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "注册接口",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://10.67.205.231:8080/api/register",
+					"protocol": "http",
+					"host": [
+						"10",
+						"67",
+						"205",
+						"231"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取分类列表",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://10.67.205.231:8080/api/goods/list",
+					"protocol": "http",
+					"host": [
+						"10",
+						"67",
+						"205",
+						"231"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"goods",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "添加至购物车",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://10.67.205.231:8080/api/addCart",
+					"protocol": "http",
+					"host": [
+						"10",
+						"67",
+						"205",
+						"231"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"addCart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "选择购物车物品",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://10.67.205.231:8080/api/selectCart",
+					"protocol": "http",
+					"host": [
+						"10",
+						"67",
+						"205",
+						"231"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"selectCart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除购物车商品",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://10.67.205.231:8080/api/deleteCart/175,176",
+					"protocol": "http",
+					"host": [
+						"10",
+						"67",
+						"205",
+						"231"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"deleteCart",
+						"175,176"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "选择收货地址",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://10.67.205.231:8080/api/selectAddress",
+					"protocol": "http",
+					"host": [
+						"10",
+						"67",
+						"205",
+						"231"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"selectAddress"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "增加收货地址",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://10.67.205.231:8080/api/addAddress",
+					"protocol": "http",
+					"host": [
+						"10",
+						"67",
+						"205",
+						"231"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"addAddress"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除收货地址",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://10.67.205.231:8080/api/deleteAddress",
+					"protocol": "http",
+					"host": [
+						"10",
+						"67",
+						"205",
+						"231"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"deleteAddress"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取上传图片",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://10.67.205.231:8080/api/getuserimg?id=%7B%22id%22:19,%22tel%22:%2219857163004%22,%22pwd%22:%223130916358%22,%22imgUrl%22:%22%2Fimages%2Fuser.jpeg%22,%22nickName%22:%2219857163004%22,%22token%22:%22eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWwiOiIxOTg1NzE2MzAwNCIsImlhdCI6MTY4NjcxMTQ3MSwiZXhwIjoxNjg2NzExNTMxfQ.UZAeR5UR8hl-FesFX6yHtLmEF-82H_6JlrQwUlgO7rw%22%7D",
+					"protocol": "http",
+					"host": [
+						"10",
+						"67",
+						"205",
+						"231"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"getuserimg"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "%7B%22id%22:19,%22tel%22:%2219857163004%22,%22pwd%22:%223130916358%22,%22imgUrl%22:%22%2Fimages%2Fuser.jpeg%22,%22nickName%22:%2219857163004%22,%22token%22:%22eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWwiOiIxOTg1NzE2MzAwNCIsImlhdCI6MTY4NjcxMTQ3MSwiZXhwIjoxNjg2NzExNTMxfQ.UZAeR5UR8hl-FesFX6yHtLmEF-82H_6JlrQwUlgO7rw%22%7D"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
