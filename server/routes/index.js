@@ -28,8 +28,7 @@ router.get("/", function (req, res, next) {
 // }
 
 //图片上传
-router.post(
-  "/api/hold/imgload",
+router.post("/api/hold/imgload",
   multer({
     //设置文件存储路径
     dest: "../public/IMGURL",
